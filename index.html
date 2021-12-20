@@ -1,0 +1,33 @@
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/lib/alea.min.js"></script>
+
+  <script>
+    const rng = alea("shuffleseed");
+
+    var numTokens = 111;
+    var reserved = 5;
+    var numSilver = 10;
+    var numGold = 1;
+
+    var bronzeIds = [],
+      silverIds = [],
+      goldIds = [];
+
+    for (var i = 0; i < numSilver; i++) {
+      var r = Math.floor(rng.double() * (numTokens - reserved)) + reserved;
+      if (silverIds.indexOf(r) === -1) silverIds.push(r);
+    }
+
+    for (var i = 0; i < numGold; i++) {
+      var r = Math.floor(rng.double() * (numTokens - reserved)) + reserved;
+      if (goldIds.indexOf(r) === -1 && silverIds.indexOf(r) === -1)
+        goldIds.push(r);
+    }
+
+    console.log("SILVER:");
+    console.log(silverIds);
+
+    console.log("GOLD:");
+    console.log(goldIds);
+  </script>
+</html>
